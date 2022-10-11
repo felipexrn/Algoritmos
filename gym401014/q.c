@@ -23,13 +23,17 @@ int main() {
         break;
       }
     }
+  }
+  int esp = n - m;
+  for (int i = 0; i < n; i++) {
     if (vn[i] > 0) {
-      if (i < n -1) {
-        printf("%i ", vn[i]);
-      } else {
-        printf("%i\n", vn[i]);
+      printf("%i", vn[i]);
+      esp--;
+      if (esp > 0) {
+        printf(" ");
       }
     }
-  }  
+  }
+  printf("\n");
   return 0;
 }
