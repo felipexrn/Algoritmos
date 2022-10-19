@@ -48,3 +48,34 @@ int main() {
     solve();
   }
 }
+
+/*
+#include <stdio.h>
+
+int main() {
+  int t, k, y, qtd, n, i, j;
+  scanf("%d", &t); // número de casos de teste T (1 ≤ T ≤ 100)
+  for (y = 0; y < t; y++) {
+    scanf("%d", &n); // número de carneiros N (1 ≤ N ≤ 10^4)
+    int v[n];
+      scanf("%d", &v[0]); // Identificadores dos carneiros K (0 ≤ K ≤ 10^9)
+    for (k = 1; k < n; k++) {
+      int carneiro;
+      scanf("%d", &carneiro); // Novo carveiro
+      for (i = 0; i < k; i++) {
+        if (v[i] != -1) {
+          if (v[i] == carneiro) {
+            v[i] = -1; // !!!IMPORTANTE!!! retirar carneiro já contador transformando em -1
+            qtd++;     // acumulador de carneiros iguais
+          } else {
+            v[k] = carneiro; // adiciona carneiro somente se for distinto
+          }
+        }
+      }  
+    }
+    printf("%d\n", n - qtd); // guarda a quantidade de carneiros distintos por caso de teste
+    qtd = 0;
+  }
+  return 0;
+}
+*/

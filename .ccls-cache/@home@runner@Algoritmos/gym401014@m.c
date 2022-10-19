@@ -1,17 +1,13 @@
 #include <stdio.h>
  
-long long convInt(double decimal) {
-  long long inteiro = decimal;
-  return inteiro;
-}
- 
 int main() {
   int t, anos;
-  double pa, pb, g1, g2;
+  double g1, g2;
+  long long pa, pb;
   scanf("%i", &t);
   for (int i = 0; i < t; i++) {
-    scanf("%lf", &pa);
-    scanf("%lf", &pb);
+    scanf("%lld", &pa);
+    scanf("%lld", &pb);
     scanf("%lf", &g1);
     scanf("%lf", &g2);
     for (int j = 0; j < 102; j++) {
@@ -19,8 +15,8 @@ int main() {
       if (pa > pb) {
         break;
       } else {
-        pa = convInt(pa * g1 / 100 + pa);
-        pb = convInt(pb * g2 / 100 + pb);
+        pa += (long long) pa * g1 / 100;
+        pb += (long long) pb * g2 / 100;
       }
     }
     if (anos > 100) {
