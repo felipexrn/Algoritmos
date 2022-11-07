@@ -1,74 +1,83 @@
 #include <stdio.h>
 
-int main() {
-  int c, n, tarifa, faturamento, ocupado, t = 10;
-  int estacionamento[t];
-
-  while (scanf("%d %d", &c, &n) != EOF) {
-    tarifa = 10;
-    faturamento = 0;
-    ocupado = 0;
-
-    for (int i = 0; i < t; i++) {
-      estacionamento[i] = 0;
+void imprime_lista(int lista[], int t) {
+  for (int i = 0; i < t; i++) {
+    printf("%d", lista[i]);
+    if (i < t - 1) {
+      printf(" ");
     }
-
-    for (int i = 0; i < n; i++) {
-      char e;
-      int p, q;
-      // e = 'C'; p = 1234; q = 2;
-      scanf("%c %d %d", &e, &p, &q); // Lê evento, placa e tamanho do carro
-      if (e == 'C') {                // evento de entrada de carro
-        if (ocupado + q <=
-            c) { // verifica se tem espaço livre no estacionamento  para o carro
-          int temVaga = 1;
-          int vaga = 0;
-          for (int j = 0; j < c;
-               j++) { // verifica espaço por espaço do estacionamento
-            int zero = 0;
-            for (int k = vaga + j; k < q;
-                 k++) { // procura por um espaço livre igual ao carro
-              if (estacionamento[k] == 0) {
-                zero = 0;
-              }
-              if (estacionamento[k] > 0) {
-                temVaga = 0;
-                printf("%d", estacionamento[k]);
-                vaga = k;
-                break;
-              }
-            }
-
-            if (temVaga == 1 || zero == 0) {
-              for (int k = vaga; k < q; k++) {
-                estacionamento[k] = p;
-              }
-              for (int k = 0; k < c; k++) {
-                printf("%d ", estacionamento[k]);
-              }
-              printf("\n");
-              ocupado += q;
-              faturamento += tarifa;
-              break;
-            }
-          }
-        }
-      } else { // evento de saída de carro
-        for (int j = 0; j < c; j++) {
-          if (estacionamento[j] == p) {
-            estacionamento[j] = 0;
-            if (estacionamento[j] != p) {
-              break;
-            }
-          }
-        }
-      }
-    }
-    printf("%d\n", faturamento);
   }
-  return 0;
+  printf("\n");
 }
 
-/*
-clang -g -Wno-everything -pthread -lm -O0 ./main.c -o "main-debug"
-  */
+int acha_vaga(int lista[], int t, int carro) {
+  int contador = 0, vaga;
+  for (int i = 0; i < t; i++) {
+    if (lista[i] == 0) {
+      contador++;
+    }                                                 
+    if (contador == carro) {
+      vaga = i - carro + 1;
+      break;
+    }
+    if (lista[i] > 0) {
+      contador = 0; 
+    }
+  }
+  if (contador < carro) {
+      vaga = -1;
+    }
+  return vaga;
+}
+
+void livra_vaga(int lista[], int t, int placa) {
+  for (int i = 0; i < t; i++) {
+    if (lista[i] == placa) {
+      lista[i] = 0;
+    }
+  }
+}
+
+void ocupa_vaga(int lista[], int t, int vaga, int placa, int carro) {
+  for (int i = vaga; i < carro + vaga; i++) {
+    lista[i] = placa;
+  }
+}
+
+int main() {
+  int c, n, tarifa, faturamento = 0, ocupado;
+  int fim = scanf("%d %d", &c, &n);
+  while (fim != EOF) { // Lê entrada até terminar documento
+    tarifa = 10;
+    ocupado = 0;
+    faturamento = 0;
+    int estacionamento[1000];
+    for (int i = 0; i < c; i++) { // cria estacionamento com tamanho C (1 ≤ C ≤ 1000)
+      estacionamento[i] = 0;
+    } 
+    for (int i = 0; i < n; i++) { // percorre N eventos (1 ≤ N ≤ 10000) 
+      char e;
+      int p, q, vaga;
+      scanf("%c", &e);
+      if (e == 'C') {  // evento de entrada de carro 'C'
+        scanf("%d %d", &p, &q); // Lê evento, placa P e tamanho do carro Q. (1000 ≤ P ≤ 9999) e (1 ≤ Q ≤ 1000)
+        if (ocupado + q <= c) { // verifica se tem espaço livre no estacionamento  para o carro 
+          vaga = acha_vaga(estacionamento, c, q);
+          if (vaga > -1) {
+            ocupa_vaga(estacionamento, c, vaga, p, q);
+            ocupado += q;
+            faturamento += tarifa;
+          }
+        }
+      } else if (e == 'S') { // evento de saída de carro 'S'
+        scanf("%d", &p);
+        livra_vaga(estacionamento, c, p);
+      }
+      //imprime_lista(estacionamento, c);
+      if (i == n-1) printf("%d\n", faturamento);
+    }
+    
+    fim = scanf("%d %d", &c, &n);
+  }  
+  return 0;
+}
