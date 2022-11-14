@@ -1,31 +1,39 @@
 #include <stdio.h>
-#include <time.h>
-int eh_primo(long numero, long divisor) {
-  int resposta = 1;
-  while(divisor < numero) {
-    if (numero % divisor == 0) {
-      resposta = 0;
-      break;
+#include <stdlib.h>
+#include<time.h>
+void ordena_array(int numeros[], int n) {
+  for (int i = 0; i < n; i++) {
+    for (int j = 0; j < n; j++) {
+      if (numeros[j] < numeros[j - 1]) {
+        int menor = numeros[j];
+        numeros[j] =  numeros[j - 1];
+        numeros[j - 1] = menor;
       }
-    divisor++;
+    } 
   }
-  return resposta;
 }
-void print(int resposta, long n, clock_t inicio, clock_t fim) {
-  if (resposta) printf("%ld eh primo", n);
-  else printf("%ld nao eh primo", n);
-  double tempo = ((double)(fim-inicio)) / (CLOCKS_PER_SEC/1000.0);
-  printf(" (%.4lf ms)\n",tempo);
+void cria_array(int numeros[], int n) {
+  srand(time(NULL));
+  for (int i = 0; i < n; i++) {
+    numeros[i] = rand()%10;
+  }
+}
+void mostra_array(int numeros[], int n) {
+  for (int i = 0; i < n; i++) {
+    printf("%d", numeros[i]);
+    if (i < n -1) {
+      printf(" ");
+    }
+  }
+  printf("\n");
 }
 int main() {
-  clock_t inicio,fim;
-  long n, d = 2;
-  while(scanf("%ld", &n) > 0) {
-    inicio = clock();
-    int resposta = eh_primo(n, d);
-    fim = clock();
-    print(resposta, n, inicio, fim);
-    d = 2;
-  }
+  int n;
+  scanf("%d", &n);
+  int numeros[n];
+  cria_array(numeros, n);
+  mostra_array(numeros, n);
+  ordena_array(numeros, n);
+  mostra_array(numeros, n);
   return 0;
 }
