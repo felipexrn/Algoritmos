@@ -28,12 +28,17 @@ void mostra_array(int numeros[], int n) {
   printf("\n");
 }
 int main() {
+  clock_t inicio,fim;
   int n;
   scanf("%d", &n);
   int numeros[n];
   cria_array(numeros, n);
   mostra_array(numeros, n);
+  inicio = clock();
   ordena_array(numeros, n);
+  fim = clock();
   mostra_array(numeros, n);
+  double tempo = ((double)(fim-inicio)) / (CLOCKS_PER_SEC/1000);
+  printf("entrada %d (%.4lf ms)\n",n, tempo);
   return 0;
 }

@@ -32,9 +32,11 @@ void c(double resultados[], double numeros[], int n) {
 }
 void d(double resultados[], double numeros[], int n) {
   for (int i = 0; i < n; i++) {
+    int logaritmo = 0;
     for (int j = numeros[i]; j > 1; j /= 2) {
-      resultados[i] = 100 + 20 * j;
+      logaritmo++;
     }
+    resultados[i] = 100 + 20 * logaritmo;
   }
 }
 int main() {
