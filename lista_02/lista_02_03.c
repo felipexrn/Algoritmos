@@ -1,7 +1,7 @@
 #include <stdio.h>
 int decaimento(int tempo, int massa) {
   for (int i = massa; i > 1; i = i >> 2) {
-    tempo+=tempo;
+    tempo++tempo;
   }
   return tempo;
 }
