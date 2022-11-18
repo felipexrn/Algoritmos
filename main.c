@@ -6,30 +6,37 @@ void resetar(int repetidos[], int t) {
   }
 }
 void configurar(int aleatorios[], int t) {
-  clock_t inicio, fim;
-  inicio = clock();
+  clock_t tempo;
   for(int i = 0; i < t; i++) {
-    fim = clock();
-    aleatorios[i] = (int) 1 + (fim - inicio) % 1000000;
+    tempo = clock();
+    aleatorios[i] = 1 + (int) tempo % 10;
   }
 }
 void contar(int aleatorios[], int repetidos[], int t) {
-  for(int i = 0; i < t; i++) {
-    repetidos[aleatorios[i]] += 1;
+  for(int i = 1; i <= t; i++) {
+    repetidos[aleatorios[i-1]-1] += 1;
   }
 }
 void mostrar(int repetidos[], int t) {
   for(int i = 0; i < t; i++) {
     if(repetidos[i] > 0) {
-      printf("%d apareceu %d vezes\n", i, repetidos[i]);
+      printf("%d apareceu %d vezes\n", i+1, repetidos[i]);
     } 
   }
 }
+void printar(int array[], int t) {
+  for(int i = 0; i < t; i++) {
+    printf("%d ", array[i]);
+  }
+  printf("\n");
+}
 int main() {
-  int t = 1000000, repetidos[t], aleatorios[t]; 
+  int t = 10, repetidos[t], aleatorios[t]; 
   resetar(repetidos, t);
   configurar(aleatorios, t);
   contar(aleatorios, repetidos, t);
   mostrar(repetidos, t);
+  printar(repetidos, t);
+  printar(aleatorios, t);
   return 0;
 }
