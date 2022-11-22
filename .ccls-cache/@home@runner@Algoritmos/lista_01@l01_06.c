@@ -12,10 +12,12 @@ int eh_primo(long numero, long divisor) {
   return resposta;
 }
 void print(int resposta, long n, clock_t inicio, clock_t fim) {
-  if (resposta) printf("%ld eh primo", n);
-  else printf("%ld nao eh primo", n);
+  printf("%d ", n);
   double tempo = ((double)(fim-inicio)) / (CLOCKS_PER_SEC/1000.0);
-  printf(" (%.4lf ms)\n",tempo);
+  printf("(%.4lf ms) ",tempo);
+  if (resposta) printf("primo\n");
+  else printf("composto\n");
+  
 }
 int main() {
   clock_t inicio,fim;
