@@ -14,7 +14,16 @@ void numerar(long lista[], long t) {
   }
 }
 void somar(long lista[], long t, long somas[], long x) {
-  
+  long soma = 0, i = 0, fatores = 0;
+  while(soma < x) {
+    if(soma + lista[i] <= x) {
+      soma += lista[i];
+      somas[fatores] = lista[i];
+      fatores++;
+    }
+    i++;
+    if (i >= t / 5) break;
+  }
 }
 void imprimir(long lista[], long t) {
   for (long i = 0; i < t; i++) {
@@ -26,10 +35,10 @@ void imprimir(long lista[], long t) {
   printf("\n");
 }
 int main() {
-  long t = 1000000, x = 5, numeros[t], somas[t]; 
+  long t = 100, x = 15, numeros[t], somas[t]; 
   zerar(numeros, t);
   zerar(somas, t);
-  numerar(numeros, t / 10);
+  numerar(numeros, t / 5);
   imprimir(numeros, t);
   somar(numeros, t, somas, x);
   imprimir(somas, t);
