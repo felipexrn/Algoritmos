@@ -13,7 +13,7 @@ void numerar(long lista[], long t) {
     lista[i] = numero + 1;
   }
 }
-long max(long lista[], long t) {
+long get_max(long lista[], long t) {
   long maior = 0;
   for (int i = 0; i < t; i++) {
     if(lista[i] > maior) {
@@ -22,7 +22,7 @@ long max(long lista[], long t) {
   }
   return maior;
 }
-long index(long lista[], long t, long valor) {
+long get_index(long lista[], long t, long valor) {
   long indice = 0;
   for (int i = 0; i < t; i++) {
     if(lista[i] == valor) {
@@ -35,8 +35,8 @@ long index(long lista[], long t, long valor) {
 void somar(long lista[], long t, long somas[], long x) {
   long soma = 0, i = 0, fatores = 0;
   while(fatores < 5) {
-    long maior = max(lista, t / 5);
-    long indice = index(lista, t / 5, maior);
+    long maior = get_max(lista, t);
+    long indice = get_index(lista, t, maior);
     for (long j = 0; j < t; j++) {
       
       
@@ -45,7 +45,6 @@ void somar(long lista[], long t, long somas[], long x) {
       soma += maior;
       somas[fatores] = indice+1;
       fatores++;
-      printf("ping0\n");
     }
     else lista[indice] = 0;
     i++;
@@ -64,13 +63,13 @@ void imprimir(long lista[], long t) {
   printf("\n");
 }
 int main() {
-  long t = 100, x = 17, numeros[t], somas[t]; 
+  long t = 100, x = 18, numeros[t], somas[t]; 
   zerar(numeros, t);
   zerar(somas, t);
   numerar(numeros, t / 5);
-  imprimir(numeros, t);
-  somar(numeros, t, somas, x);
-  imprimir(somas, t);
-  imprimir(numeros, t);
+  imprimir(numeros, t / 5);
+  somar(numeros, t / 5, somas, x);
+  imprimir(somas, t / 5);
+  imprimir(numeros, t / 5);
   return 0;
 }
