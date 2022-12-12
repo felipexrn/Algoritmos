@@ -1,3 +1,4 @@
+// compara duas strings ignorando 
 #include <stdio.h>
 int main() {
   char texto1[100];
