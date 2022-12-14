@@ -5,8 +5,8 @@ int main() {
   int *n;
   int q = 10;
   n = (int*) malloc(sizeof(int) * q);
-  *n = 10;
-  printf("%p", &n);
+  n[0] = 10;
+  printf("%d", n[0]);
   return 0;
 }
 
