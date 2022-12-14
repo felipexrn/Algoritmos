@@ -1,26 +1,26 @@
 #include <stdio.h>
 #include <stdlib.h>
-
 int main() {
-  int *n, t, i;
+  int *p;
+  int t, i;
   scanf("%d", &t);
-  n = (int *)malloc(sizeof(int) * t);
-  if (n == NULL) {
-    fprintf(stderr, "ERRO ao alocar memória\n");
-    exit(1);
-  } else {
-    fprintf(stderr, "Alocou memória\n");
-  }
+  p = (int*) malloc(sizeof(int)*t);
+  
   for (i = 0; i < t; i++)
-    scanf("%d", &n[i]);
+    scanf("%d", &p[i]);
 
   printf("{");
   for (i = 0; i < t; i++) {
-    printf("%d", n[i]);
+    printf("%d", p[i]);
     if(i < t -1) printf(", ");
   }
-    
   printf("}\n");
 
+  printf("A: %d\n", p[0]);
+
+  free(p);
+
+  printf("B: %d\n", p[0]);
+  
   return 0;
 }
