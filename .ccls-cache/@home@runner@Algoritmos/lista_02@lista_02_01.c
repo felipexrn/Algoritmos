@@ -1,12 +1,15 @@
 #include <stdio.h>
-int main() {
-  int a, b, ans = 0;
-  scanf("%d %d", &a, &b);
-  for(int i = 0; i < a; i++) {
-    for(int j = 0; i < b; j++) {
-      ans++;
-    }
+unsigned long pow(unsigned long numero, unsigned long potencia) {
+  unsigned long p = 1;
+  for (unsigned long i = 0; i < potencia; i++) {
+    p *= numero;
   }
-  printf("%d", ans);
+  return p;
+}
+int main() {
+  unsigned long a, b, ans;
+  scanf("%llu %llu", &a, &b);
+  ans = pow(a, b);
+  printf("%llu", ans);
   return 0;
 }
