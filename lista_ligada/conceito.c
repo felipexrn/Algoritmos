@@ -61,17 +61,21 @@ void lista_mostrar(lista l) { // função para mostrar lista
   printf("\n");
 }
 
-// Função para testar lista ligada
-int main() {
+// aqui criamos a lista e testamos as funções
+// compile com o comando: gcc conceito.c -o conceito
+// execute com o comando: ./conceito < entrada.txt
+// o programa deve executar com sucesso caso o arquivo entrada.txt exista.
+// se não existir, gere o arquivo de entrada com o programa gerador_aleatorio.c
+int main() { // Função para testar lista ligada
   lista l = lista_criar();
-  
-  lista_add(l, 15);
-  lista_add(l, 89);
-  lista_add(l, -9);
-  lista_add(l, 0);
-  lista_add(l, 1101001);
-  lista_mostrar(l);
-
-  printf("tamanho: %d\n", l->tamanho);
+  int n, m; // quantidade de números a serem lidos, valor lido.
+  scanf("%d", &n); // quantidade de números a serem lidos
+  for (int i = 0; i < n; i++) {
+    scanf("%d", &m); // valor lido
+    lista_add(l, m); // adiciona valor na lista
+  }
+  lista_mostrar(l); // mostra elementos da lista
+  printf("tamanho: %d\n", l->tamanho); // mostra tamanho da lista
+  free(l); // libera memória da lista
   return 0;
 }
