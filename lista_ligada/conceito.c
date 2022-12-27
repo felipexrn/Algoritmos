@@ -29,33 +29,33 @@ lista lista_criar() { // função para criar lista duplamente ligada
   l->inicio = 0; // valor inicial do ponteiro para o inicio da lista
   l->fim = 0; // valor inicial do ponteiro para o fim da lista 
   l-> tamanho = 0; // valor inicial do tamamanho da lista
-  return l;
+  return l; // retorno da função com a lista criada
 }
 
-void lista_add(lista l, int valor) {
-  no n;
-  n = (no) malloc(sizeof(struct no));
-  n->valor = valor;
-  if(l->tamanho == 0) {
-    n->prox = 0;
-    n->ante = 0;
-    l->inicio = n;
-    l->fim = n;
-  } else {
-    l->fim->prox = n;
-    n->prox = 0;
-    n->ante = l->fim;
-    l->fim = n;
+void lista_add(lista l, int valor) { // função para acionar elementos na lista
+  no n; // ponteiro para nó da lista
+  n = (no) malloc(sizeof(struct no)); // alocação de memória para nó da lista
+  n->valor = valor; // atribuição do valor a ser armazendado
+  if(l->tamanho == 0) { // caso a lista estiver vazia
+    n->prox = 0; // não há próximo nó (este é o único)
+    n->ante = 0; // não há nó anterior (este é o primeiro)
+    l->inicio = n; // início da lista é o próprio nó
+    l->fim = n; // fim da lista é o próprio nó
+  } else { // caso a lista não estiver vazia 
+    l->fim->prox = n; // o próximo do anterior é o novo nó
+    n->prox = 0; // o próximo do dó atual é zero (ele é o último da lista)
+    n->ante = l->fim; // o anterior recebe o antifo fim da lista
+    l->fim = n; // o fim da lista é o novo nó
   }
-  l->tamanho++;
+  l->tamanho++; // acrescenta o tamanho da lista em 1
 }
 
-void lista_mostrar(lista l) {
-  no atual = l->inicio;
-  for (int i = 0; i < l->tamanho; i++) {
-    printf("%d ", atual->valor);
-    if (atual->prox != 0) {
-      atual = atual->prox;
+void lista_mostrar(lista l) { // função para mostrar lista
+  no atual = l->inicio; // ponteiro auxiliar do tipo nó 
+  for (int i = 0; i < l->tamanho; i++) { // percorre a lista pelo tamanho
+    printf("%d ", atual->valor); // exibe valor do nó atual
+    if (atual->prox != 0) { // se o próximo nó existe
+      atual = atual->prox; // aponta para o próximo nó
     }
   }
   printf("\n");
