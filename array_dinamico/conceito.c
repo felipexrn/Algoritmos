@@ -36,10 +36,9 @@ list array_criar() {
   return l; // retorno da função com estrutura de array
 }
 
-// função para adicionar elementos na array
-void array_add(list l, int value) { // parametros de l (array) e value (valor a ser inserido)
-  if(l->capacity == l->used) { // quando a array está cheia
-    int i, *new_data; // ponteiro para um novo array
+// função para alocar memória para a array
+void array_alocar(list l) {
+  int i, *new_data; // ponteiro para um novo array
     l->capacity += 10; // capacidade aumentada em 10
     new_data = (int*) malloc(sizeof(int) * l->capacity); // alocação de memória para novo array
     for (i = 0; i < l->used; i++) { // copia do velho array para o novo array
@@ -48,9 +47,33 @@ void array_add(list l, int value) { // parametros de l (array) e value (valor a 
     int *old_data = l->data; // ponteiro para o array antigo
     l->data = new_data; // re-alocação do ponteiro para o novo array
     free(old_data); // libera memória do antigo array
+}
+
+
+// função para adicionar elementos no final da array 
+void array_add(list l, int value) { // parametros de l (array) e value (valor a ser inserido)
+  if(l->capacity == l->used) { // quando a array está cheia
+    array_alocar(l); // alocação de memória para a nova array
   }
-  
   l->data[l->used++] = value;
+}
+
+// função para inserir elemento na array na posição index AINDA EM DESENVOLVIMENTO
+void array_insert(list l, int index, int value) { 
+  if (index <= l->used) { // se o index for menor igual que o tamanho da array
+    if(l->capacity == l->used) { // quando a array está cheia
+      array_alocar(l); // alocação de memória para a nova array
+    }
+    int ant, pro;
+    ant = l->data[index];
+    l->data[index] = value;
+    pro = l->data[index+1];
+    for (index; index < l->used; index++) {
+      ant = l->data[index];
+      l->data[index] = pro;
+      pro = l->data[index+1];
+    }
+  }  
 }
 
 // aqui criamos a array e testamos as funções
