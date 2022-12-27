@@ -2,16 +2,16 @@
 #include <stdlib.h>
 
 // declarações de estrutura de lista e nós
-struct lista_ligada {
-  int *inicio;
-  int *fim;
-  int tamanho;
-};
-
 struct no {
   int valor;
   struct no *prox;
   struct no *ante;
+};
+
+struct lista_ligada {
+  struct no *inicio;
+  struct no *fim;
+  int tamanho;
 };
 
 typedef struct lista_ligada* lista;
@@ -24,6 +24,7 @@ lista lista_criar() {
   l->inicio = 0;
   l->fim = 0;
   l-> tamanho = 0;
+  return l;
 }
 
 void lista_add(lista l, int valor) {
@@ -35,8 +36,8 @@ void lista_add(lista l, int valor) {
     n->ante = 0;
     l->inicio = n;
     l->fim = n;
-    
   } else {
+    l->fim->prox = n;
     n->prox = 0;
     n->ante = l->fim;
     l->fim = n;
@@ -45,17 +46,27 @@ void lista_add(lista l, int valor) {
 }
 
 void lista_mostrar(lista l) {
-  int i;
-  for (i = 0; i < l->tamanho; i++) {
-    
+  no atual = l->inicio;
+  for (int i = 0; i < l->tamanho; i++) {
+    printf("%d ", atual->valor);
+    if (atual->prox != 0) {
+      atual = atual->prox;
+    }
   }
+  printf("\n");
 }
 
 // Função para testar lista ligada
 int main() {
   lista l = lista_criar();
-  lista_add(l, 15);
-  lista_add(l, 15);
   
+  lista_add(l, 15);
+  lista_add(l, 89);
+  lista_add(l, -9);
+  lista_add(l, 0);
+  lista_add(l, 1101001);
+  lista_mostrar(l);
+
+  printf("tamanho: %d\n", l->tamanho);
   return 0;
 }
