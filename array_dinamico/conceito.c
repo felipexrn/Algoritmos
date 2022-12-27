@@ -14,7 +14,7 @@ struct array { // declaração de estrutura para armazenamento de array
   int *data; // ponteiro para array
 };
 
-typedef struct array* list; // renomeação do tipo da estrutura da array
+typedef struct array* list; // renomeação do tipo da estrutura da array como ponteiro para estrutura de array
 
 
 
@@ -36,25 +36,25 @@ void listar(list l) {
 // função para criar nova array
 list array_criar() {
   list l;
-  l = (list) malloc(sizeof(struct array));
-  l->used = 0;
-  l->capacity = 10;
-  l->data = (int*) malloc(sizeof(int) * l->capacity);
-  return l;
+  l = (list) malloc(sizeof(struct array)); // alocação de memória para a estrutura da array
+  l->used = 0; // espaço usado inicial
+  l->capacity = 10; // capacidade inicial
+  l->data = (int*) malloc(sizeof(int) * l->capacity); // alocação de memória para o array
+  return l; // retorno da função com estrutura de array
 }
 
 // função para adicionar elementos na array
-void array_add(list l, int value) {
-  if(l->capacity == l->used) {
-    int i, *new_data;
-    l->capacity += 10;
-    new_data = (int*) malloc(sizeof(int) * l->capacity);
-    for (i = 0; i < l->used; i++) {
+void array_add(list l, int value) { // parametros de l (array) e value (valor a ser inserido)
+  if(l->capacity == l->used) { // quando a array está cheia
+    int i, *new_data; // ponteiro para um novo array
+    l->capacity += 10; // capacidade aumentada em 10
+    new_data = (int*) malloc(sizeof(int) * l->capacity); // alocação de memória para novo array
+    for (i = 0; i < l->used; i++) { // copia do velho array para o novo array
       new_data[i] = l->data[i];
     }
-    int *old_data = l->data;
-    l->data = new_data;
-    free(old_data); // libera memória da antiga array
+    int *old_data = l->data; // ponteiro para o array antigo
+    l->data = new_data; // re-alocação do ponteiro para o novo array
+    free(old_data); // libera memória do antigo array
   }
   
   l->data[l->used++] = value;
