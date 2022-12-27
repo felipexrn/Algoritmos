@@ -1,0 +1,1 @@
+Desenhe o que está acontecendo na memória

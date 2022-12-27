@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+
 struct pessoa {
   char nome[50];
   float altura; 

@@ -1,16 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-struct array_list {
-  int size;
-  int capacity;
-  int *list;
-};
-
-typedef struct array_list list;
-
-
-
 void listar(int* p, int qtd) {
   for (int i = 0; i < qtd; i++) {
     printf("%d ", p[i]);
