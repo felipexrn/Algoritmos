@@ -1,1 +1,1 @@
-Desenhe o que está acontecendo na memória
+Leia os comentários do arquivo conceito.c para melhor entendimendo do conceito de array dinâmico

@@ -6,7 +6,7 @@ Se possível desenhem o estão fazendo. facilita e muito o entendimento do conte
 #include <stdio.h> // biblioteca padrão de entrada e saída
 #include <stdlib.h> // biblioteca padrão de liberação de memoria
 
-// declaração de estruturas e declaração de funções. Este conteúdo deve ir para um arquivo.h 
+// declaração de estruturas.
 
 struct array { // declaração de estrutura para armazenamento de array 
   int capacity; // capacidade da array
@@ -16,14 +16,7 @@ struct array { // declaração de estrutura para armazenamento de array
 
 typedef struct array* list; // renomeação do tipo da estrutura da array como ponteiro para estrutura de array
 
-
-
-
-
-
-
-
-// implementação de funções. Este conteúdo deve ir para um arquivo.c
+// implementação de funções.
 
 // função para exibir array no console
 void listar(list l) {
@@ -60,15 +53,11 @@ void array_add(list l, int value) { // parametros de l (array) e value (valor a 
   l->data[l->used++] = value;
 }
 
-
-
-
-
-
-
-
-
-// aqui criamos a array e testamos as funções main.c
+// aqui criamos a array e testamos as funções
+// compile com o comando: gcc conceito.c -o conceito
+// execute com o comando: ./conceito < entrada.txt
+// o programa deve executar com sucesso caso o arquivo entrada.txt exista.
+// se não existir, gere o arquivo de entrada com o programa gerador.c
 int main() {
   list l = array_criar(); // cria uma array dinâmica na memória
   
