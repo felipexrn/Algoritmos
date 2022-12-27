@@ -4,7 +4,7 @@ Se possível desenhem o estão fazendo. facilita e muito o entendimento do conte
 */
 
 #include <stdio.h> // biblioteca padrão de entrada e saída
-#include <stdlib.h> // biblioteca padrão de liberação de memoria
+#include <stdlib.h> // biblioteca de alocação e de liberação de memoria
 
 // declaração de estruturas.
 
