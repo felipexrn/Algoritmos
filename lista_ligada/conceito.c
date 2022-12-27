@@ -1,29 +1,34 @@
-#include <stdio.h>
-#include <stdlib.h>
+/* 
+Este documento contém o conceito da lista duplamente ligada 
+Se possível desenhem o estão fazendo. facilita e muito o entendimento do conteúdo.
+*/
+
+#include <stdio.h> // biblioteca padrão de entrada e saída
+#include <stdlib.h> // biblioteca padrão de liberação de memoria
 
 // declarações de estrutura de lista e nós
-struct no {
-  int valor;
-  struct no *prox;
-  struct no *ante;
+struct no { // estrutura para nós da lista duplamente ligada
+  int valor; // armazena valor do nó
+  struct no *prox; // armazena ponteiro para próximo nó
+  struct no *ante; // armazena ponteiro para nó anterior
 };
 
-struct lista_ligada {
-  struct no *inicio;
-  struct no *fim;
-  int tamanho;
+struct lista_ligada { // estrutura da lista
+  struct no *inicio; // armazena nó do início da lista
+  struct no *fim; // armazena nó do fim da lista
+  int tamanho; // armazena tamanho da lista
 };
 
-typedef struct lista_ligada* lista;
-typedef struct no* no;
+typedef struct lista_ligada* lista; // re-declaração de tipo da lista
+typedef struct no* no; // re-declaração de tipo do nó
 
 //implementações de funções
-lista lista_criar() {
-  lista l;
-  l = (lista)malloc(sizeof(struct lista_ligada));
-  l->inicio = 0;
-  l->fim = 0;
-  l-> tamanho = 0;
+lista lista_criar() { // função para criar lista duplamente ligada
+  lista l; // ponteiro do tipo lista
+  l = (lista)malloc(sizeof(struct lista_ligada)); // alocação de memória da lista duplamente ligada
+  l->inicio = 0; // valor inicial do ponteiro para o inicio da lista
+  l->fim = 0; // valor inicial do ponteiro para o fim da lista 
+  l-> tamanho = 0; // valor inicial do tamamanho da lista
   return l;
 }
 
