@@ -58,22 +58,24 @@ void array_add(list l, int value) { // parametros de l (array) e value (valor a 
   l->data[l->used++] = value;
 }
 
-// função para inserir elemento na array na posição index AINDA EM DESENVOLVIMENTO
+// função para inserir elemento na array na posição index
 void array_insert(list l, int index, int value) { 
-  if (index <= l->used) { // se o index for menor igual que o tamanho da array
+  if (index < l->used) { // se o index for menor igual que o tamanho da array
     if(l->capacity == l->used) { // quando a array está cheia
       array_alocar(l); // alocação de memória para a nova array
     }
     int ant, pro;
     ant = l->data[index];
     l->data[index] = value;
-    pro = l->data[index+1];
+    pro = ant;
+    index++;
+    l->used++;
     for (index; index < l->used; index++) {
       ant = l->data[index];
       l->data[index] = pro;
-      pro = l->data[index+1];
+      pro = ant;
     }
-  }  
+  } else return 0; 
 }
 
 // aqui criamos a array e testamos as funções
@@ -90,7 +92,7 @@ int main() {
     scanf("%d", &m); // lê valor do console
     array_add(l, m); // adiciona valor lido do console na array
   }
-  
+  array_insert(l, 5, 10); // inserir valor 10 na posição 5 da array
   listar(l); // mostra a array no console
   printf("capacidade: %d usada: %d\n", l->capacity, l->used); // mostra capacidade e espaço usado da array
   free(l); // libera memória da array
