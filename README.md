@@ -1,10 +1,10 @@
 # Algoritmos
 Exercícios e materiais de estudo da disciplina de Algoritmos do curso de TADS 
-# IFRN CNAT #
-## Curso de TADS - Disciplina de Algoritmos ##
-### Relátório de vetores dinâmicos ###
+# IFRN CNAT 
+## Curso de TADS - Disciplina de Algoritmos 
+### Relátório de vetores dinâmicos 
 
-#### Estrutura ####
+#### Estrutura 
 
 01 - Introdução
 02 - Vetores dinâmicos
@@ -16,7 +16,7 @@ Exercícios e materiais de estudo da disciplina de Algoritmos do curso de TADS
 04 - Resultados
 05 - Conclusão
 
-##### 01 Introdução #####
-##### 02 Vetores dinâmicos #####
-##### 03 Implementação #####
-######  03.01 Organização dos arquivos fontes ######
+##### 01 Introdução 
+##### 02 Vetores dinâmicos 
+##### 03 Implementação 
+######  03.01 Organização dos arquivos fontes 
