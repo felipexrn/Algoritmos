@@ -19,4 +19,4 @@ Exercícios e materiais de estudo da disciplina de Algoritmos do curso de TADS
 ##### 01 Introdução #####
 ##### 02 Vetores dinâmicos #####
 ##### 03 Implementação #####
-  ###### 03.01 Organização dos arquivos fontes ######
+######  03.01 Organização dos arquivos fontes ######
