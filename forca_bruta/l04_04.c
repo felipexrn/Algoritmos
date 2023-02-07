@@ -26,15 +26,19 @@ int find_exit_ways(int l, int c, int lin, int col, int maze[7][7]) {
     print_maze(lin, col, maze);
     return 1;
   }
-  if (maze[l][c] != 0 || l == lin || c == col || l < 0 || c < 0) return 0;
-  int ans = 0; 
+  const int INF = (lin * col) + 1;
+  if (maze[l][c] != 0 || l == lin || c == col || l < 0 || c < 0) return INF;
+  int ans1 = INF, ans2 = 0; 
   maze[l][c] = 2;
-  ans += find_exit_ways(l+1, c, lin, col, maze);
-  ans += find_exit_ways(l, c+1, lin, col, maze);
-  ans += find_exit_ways(l-1, c, lin, col, maze);
-  ans += find_exit_ways(l, c-1, lin, col, maze);
+  ans1 = find_exit_ways(l+1, c, lin, col, maze);
+  ans2 = find_exit_ways(l, c+1, lin, col, maze);
+  if (ans2 < ans1) ans1 = ans2;
+    ans2 = find_exit_ways(l-1, c, lin, col, maze);
+  if (ans2 < ans1) ans1 = ans2;
+    ans2 = find_exit_ways(l, c-1, lin, col, maze);
+  if (ans2 < ans1) ans1 = ans2;
   maze[l][c] = 0;
-  return ans;
+  return ans1 + 1;
 }
 
 int main() {
