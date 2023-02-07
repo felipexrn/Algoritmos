@@ -20,7 +20,7 @@ void print_maze(int lin, int col, int maze[7][7]) {
   }
 }
 
-int find_exit_ways(int l, int c, int lin, int col, int maze[7][7]) {
+int find_best_exit_way(int l, int c, int lin, int col, int maze[7][7]) {
   if (l == lin - 1 && c == col-1 ) {
     printf("\n");
     print_maze(lin, col, maze);
@@ -30,12 +30,12 @@ int find_exit_ways(int l, int c, int lin, int col, int maze[7][7]) {
   if (maze[l][c] != 0 || l == lin || c == col || l < 0 || c < 0) return INF;
   int ans1 = INF, ans2 = 0; 
   maze[l][c] = 2;
-  ans1 = find_exit_ways(l+1, c, lin, col, maze);
-  ans2 = find_exit_ways(l, c+1, lin, col, maze);
+  ans1 = find_best_exit_way(l+1, c, lin, col, maze);
+  ans2 = find_best_exit_way(l, c+1, lin, col, maze);
   if (ans2 < ans1) ans1 = ans2;
-    ans2 = find_exit_ways(l-1, c, lin, col, maze);
+    ans2 = find_best_exit_way(l-1, c, lin, col, maze);
   if (ans2 < ans1) ans1 = ans2;
-    ans2 = find_exit_ways(l, c-1, lin, col, maze);
+    ans2 = find_best_exit_way(l, c-1, lin, col, maze);
   if (ans2 < ans1) ans1 = ans2;
   maze[l][c] = 0;
   return ans1 + 1;
@@ -46,7 +46,7 @@ int main() {
   scanf("%d %d", &lin, &col);
   read_maze(lin, col, maze);
   //print_maze(lin, col, maze);
-  int ans = find_exit_ways(l, c, lin, col, maze);
+  int ans = find_best_exit_way(l, c, lin, col, maze);
   printf("%d\n", ans);
   return 0;
 }
