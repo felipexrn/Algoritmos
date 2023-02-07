@@ -50,6 +50,16 @@ void read_lab(int lab[10][10], int lin, int col){
   scanf("%d",&lab[i][j]);
 }
 
+void print_maze(int lin, int col, int lab[10][10]) {
+  for (int l = 0; l < lin; l++) {
+    for (int c = 0; c < col; c++) {
+      int cell = lab[c][l];
+      printf("%d ", cell);
+    }
+    printf("\n");
+  }
+}
+
 int main() {
   int lab[10][10],lin,col;
   struct caminho cam;
