@@ -1,67 +1,67 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-struct array_list {
-  int size;
+// arquivo.h
+struct array {
   int capacity;
-  int *list;
+  int used;
+  int *data;
 };
 
-typedef struct array_list list;
+typedef struct array* list;
 
-
-
-void listar(int* p, int qtd) {
-  for (int i = 0; i < qtd; i++) {
-    printf("%d ", p[i]);
+// arquivo.c
+void listar(list l) {
+  for (int i = 0; i < l->used; i++) {
+    printf("%d ", l->data[i]);
   }
   printf("\n");
 }
 
-void arraycopy(int* p, int* t, int max) {
-  int i;
-  for (i = 0; i < max; i++) {
-    t[i] = p[i];
-  }
+list lista_criar() {
+  list l;
+  l = (list) malloc(sizeof(struct array));
+  l->used = 0;
+  l->capacity = 10;
+  l->data = (int*) malloc(sizeof(int) * l->capacity);
+  return l;
 }
 
-void add(int* p, int* qtd ,int max, int valor) {
-  if(*qtd == max) {
-    int *t;
-    max += 10;
-    t = (int*) malloc(sizeof(int) * max);
-    arraycopy(p, t, max-10);
-    p = t;
-    free(t);
+void add(list l, int value) {
+  if(l->capacity == l->used) {
+    int i, *new_data;
+    l->capacity += 10;
+    new_data = (int*) malloc(sizeof(int) * l->capacity);
+    for (i = 0; i < l->used; i++) {
+      new_data[i] = l->data[i];
+    }
+    int *old_data = l->data;
+    l->data = new_data;
+    free(old_data);
   }
-
-  p[*qtd] = valor;
-  *qtd += 1;
+  
+  l->data[l->used++] = value;
 }
 
-
+//main.c
 int main() {
-  int *p;
-  int max = 10;
-  int qtd = 0;
-  p = (int*) malloc(sizeof(int) * max);
-
-  add(p, &qtd, max, 1);
-  add(p, &qtd, max, 2);
-  add(p, &qtd, max, 3335);
-  add(p, &qtd, max, 4);
-  add(p, &qtd, max, 9);
-  add(p, &qtd, max, 10);
-  add(p, &qtd, max, -1);
-  add(p, &qtd, max, 150);
-  add(p, &qtd, max, 14);
-  add(p, &qtd, max, 15);
-  add(p, &qtd, max, 777);
+  list l = lista_criar();
   
-  listar(p, qtd);
+  add(l, 1);
+  add(l, 2);
+  add(l, 3335);
+  add(l, 4);
+  add(l, 9);
+  add(l, 10);
+  add(l, -1);
+  add(l, 150);
+  add(l, 14);
+  add(l, 15);
+  add(l, 777);
+  add(l, 158);
   
-  
-
-  
+  listar(l);
+  free(l);
+    
   return 0;
 }
