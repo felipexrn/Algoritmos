@@ -5,7 +5,7 @@ void read_maze(int lin, int col, int maze[7][7]) {
     for (int c = 0; c < col; c++) {
       int cell;
       scanf("%d", &cell);
-      maze[c][l] = cell; 
+      maze[l][c] = cell; 
     }
   }
 }
@@ -13,7 +13,7 @@ void read_maze(int lin, int col, int maze[7][7]) {
 void print_maze(int lin, int col, int maze[7][7]) {
   for (int l = 0; l < lin; l++) {
     for (int c = 0; c < col; c++) {
-      int cell = maze[c][l];
+      int cell = maze[l][c];
       printf("%d ", cell);
     }
     printf("\n");
@@ -22,8 +22,10 @@ void print_maze(int lin, int col, int maze[7][7]) {
 
 int find_best_exit_way(int l, int c, int lin, int col, int maze[7][7]) {
   if (l == lin - 1 && c == col-1 ) {
+    maze[l][c] = 8;
     printf("\n");
     print_maze(lin, col, maze);
+    maze[l][c] = 0;
     return 1;
   }
   const int INF = (lin * col);
@@ -47,6 +49,6 @@ int main() {
   read_maze(lin, col, maze);
   //print_maze(lin, col, maze);
   int ans = find_best_exit_way(l, c, lin, col, maze);
-  printf("%d\n", ans);
+  printf("\n%d\n", ans);
   return 0;
 }
